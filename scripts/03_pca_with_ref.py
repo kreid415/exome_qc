@@ -3,6 +3,7 @@
 ## run pca
 
 import hail as hl 
+
 PCA_OUT = 'recombine_datasets_pca_'
 
 # lift over agvp
@@ -21,10 +22,10 @@ awigen = awigen.annotate_cols(Dataset="AWIGEN")
 
 # load 1kgp + hdgp
 gnomad1 = hl.experimental.load_dataset(name='gnomad_hgdp_1kg_subset_dense',
-                                  version='3.1.2',
-                                  reference_genome='GRCh38',
-                                  region='us',
-                                  cloud='gcp') # https://hail.is/docs/0.2/experimental/index.html#hail.experimental.load_dataset
+                                version='3.1.2',
+                                reference_genome='GRCh38',
+                                region='us',
+                                cloud='gcp') # https://hail.is/docs/0.2/experimental/index.html#hail.experimental.load_dataset
 gnomad = gnomad1.annotate_cols(Dataset = 'gnomad_hgdp_1kg')
 # Take subset of entry fields 
 gnomad = gnomad.select_entries('DP', 'GQ', 'GT')
